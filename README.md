@@ -83,7 +83,9 @@ Jaeger
 docker-compose logs jaeger
 
 ```
-## or if you use docker desktop you can find logs by docker desktop -> containers -> container name -> logs 
+## or 
+##if you use docker desktop you can find logs, 
+docker desktop -> containers -> container name -> logs 
 # Ports
 Krakend EE: '1234','8080'
 Grafana: '4000'
