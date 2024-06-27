@@ -30,8 +30,8 @@ services:
       - "./config/telemetry-dashboards/grafana/krakend/for-prometheus.json:/var/lib/grafana/dashboards/krakend/for-prometheus.json"
       - "./config/telemetry-dashboards/grafana/dashboards/all.yml:/etc/grafana/provisioning/dashboards/all.yml"
     environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=123
+      - GF_SECURITY_ADMIN_USER=admin  # grafana username
+      - GF_SECURITY_ADMIN_PASSWORD=123 # grafana password
 
   prometheus:
     image: prom/prometheus:latest
