@@ -31,7 +31,7 @@
           {
             "disable_metrics": true,
             "disable_traces": false,
-            "host": "10.0.250.235",
+            "host": "jaeger",
             "name": "debug_jaeger",
             "port": 4317,
             "use_http": false
@@ -40,7 +40,7 @@
         "prometheus": [
           {
             "name": "local_prometheus",
-            "port": 8090,
+            "port": 9090,
             "process_metrics": true,
             "go_metrics": true
           }
