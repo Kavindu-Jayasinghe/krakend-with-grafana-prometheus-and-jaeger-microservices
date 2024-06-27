@@ -113,9 +113,10 @@
           ],
           "disable_host_sanitize": false,
           "method": "GET"
-        }
+         }
       
-     }
-      
+      ]
     }
+      
+   ]
 }
