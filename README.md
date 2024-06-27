@@ -34,7 +34,7 @@ docker-compose down
 
 ```
 # Configuration
-# #Krakend
+## Krakend
 The Krakend configuration is defined in ./config/krakend/krakend.json. You can modify this file to change the API gateway behavior.
 
 ## Grafana
