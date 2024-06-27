@@ -9,10 +9,10 @@ This repository contains a Docker Compose setup for running a microservices arch
 
 ## Services
 
-- **Krakend EE**: API Gateway ```localhost:8080```
-- **Grafana**: Data visualization and monitoring ```localhost:4000```
-- **Prometheus**: Monitoring and alerting ```localhost:9090```
-- **Jaeger**: Distributed tracing ```localhost:16686```
+- **Krakend EE**: API Gateway 
+- **Grafana**: Data visualization and monitoring 
+- **Prometheus**: Monitoring and alerting 
+- **Jaeger**: Distributed tracing 
 
 ## Setup
 
@@ -34,16 +34,16 @@ docker-compose down
 
 ```
 # Configuration
-## Krakend
+## Krakend ```localhost:8080```
 The Krakend configuration is defined in ./config/krakend/krakend.json. You can modify this file to change the API gateway behavior.
 
-## Grafana
+## Grafana ```localhost:4000```
 Grafana is configured to use Prometheus as a data source and includes dashboards for monitoring. Configuration files are located in ./config/telemetry-dashboards/grafana/.
 
-## Prometheus
+## Prometheus ```localhost:9090```
 Prometheus is configured to scrape metrics from various services. The configuration file is located at ./config/telemetry-dashboards/prometheus/prometheus.yml.
 
-## Jaeger
+## Jaeger ```localhost:16686```
 Jaeger is set up to collect and visualize traces. No additional configuration is required.
 
 ## API Endpoints
