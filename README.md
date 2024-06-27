@@ -20,4 +20,4 @@ This repository contains a Docker Compose setup for running a microservices arch
 
 ```sh
 git clone https://github.com/yourusername/yourrepo.git
-cd yourrepo
+cd krakend-micro
