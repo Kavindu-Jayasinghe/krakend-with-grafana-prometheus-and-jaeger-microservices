@@ -9,10 +9,10 @@ This repository contains a Docker Compose setup for running a microservices arch
 
 ## Services
 
-- **Krakend EE**: API Gateway
-- **Grafana**: Data visualization and monitoring
-- **Prometheus**: Monitoring and alerting
-- **Jaeger**: Distributed tracing
+- **Krakend EE**: API Gateway ```localhost:8080```
+- **Grafana**: Data visualization and monitoring ```localhost:4000```
+- **Prometheus**: Monitoring and alerting ```localhost:9090```
+- **Jaeger**: Distributed tracing ```localhost:16686```
 
 ## Setup
 
