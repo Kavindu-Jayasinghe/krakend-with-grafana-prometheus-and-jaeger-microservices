@@ -34,18 +34,18 @@ docker-compose down
 
 ```
 # Configuration
-## Krakend ```localhost:8080```
+## Krakend 
 The Krakend configuration is defined in ./config/krakend/krakend.json. You can modify this file to change the API gateway behavior.
-
-## Grafana ```localhost:4000```
+```localhost:8080```
+## Grafana 
 Grafana is configured to use Prometheus as a data source and includes dashboards for monitoring. Configuration files are located in ./config/telemetry-dashboards/grafana/.
-
-## Prometheus ```localhost:9090```
+```localhost:4000```
+## Prometheus 
 Prometheus is configured to scrape metrics from various services. The configuration file is located at ./config/telemetry-dashboards/prometheus/prometheus.yml.
-
-## Jaeger ```localhost:16686```
+```localhost:9090```
+## Jaeger 
 Jaeger is set up to collect and visualize traces. No additional configuration is required.
-
+```localhost:16686```
 ## API Endpoints
 Krakend API
 Endpoint: /product
