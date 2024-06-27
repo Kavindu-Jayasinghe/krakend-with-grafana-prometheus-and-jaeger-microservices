@@ -88,8 +88,11 @@ docker-compose logs jaeger
 docker desktop -> containers -> krakend-micro -> container name -> logs 
 # Ports
 Krakend EE: '1234','8080'
+
 Grafana: '4000'
+
 Prometheus: '9090'
+
 Jaeger: '16686','14268','64317','64318'
 
 # Notes
