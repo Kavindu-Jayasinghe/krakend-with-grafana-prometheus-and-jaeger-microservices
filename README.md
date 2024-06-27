@@ -56,7 +56,7 @@ Description: Retrieves product information from the backend service.
 curl -X GET http://localhost:8080/product
 
 ```
-## or postmen
+## or postman
 method "GET"
 ```
 http://localhost:8080/product
