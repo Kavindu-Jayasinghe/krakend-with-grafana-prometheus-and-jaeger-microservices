@@ -92,7 +92,7 @@
       },
       "backend": [
         {
-          "url_pattern": "/products",
+          "url_pattern": "/product",
           "extra_config": {
             "qos/circuit-breaker": {
               "interval": 60,
