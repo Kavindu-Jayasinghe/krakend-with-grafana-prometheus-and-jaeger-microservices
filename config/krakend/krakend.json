@@ -84,20 +84,38 @@
     
     
   },
-  "endpoints": [
+   "endpoints": [
     {
-      "endpoint": "/api/secure-data",
+      "endpoint": "/product",
       "method": "GET",
       "extra_config": {
-        "auth/validator": {
-          "alg": "RS256",
-          "audience": [
-            "http://localhost:3000/"
+      },
+      "backend": [
+        {
+          "url_pattern": "/products",
+          "extra_config": {
+            "qos/circuit-breaker": {
+              "interval": 60,
+              "name": "circuit-breaker-1",
+              "timeout": 10,
+              "max_errors": 1,
+              "log_status_change": true
+            },
+            "qos/ratelimit/proxy": {
+              "max_rate": 10,
+              "capacity": 10,
+              "every": "5s"
+            }
+          },
+          "sd": "static",
+          "host": [
+            "https://dummyjson.com"
           ],
-          "jwk_url": "https://dev-insurance-link.au.auth0.com/.well-known/jwks.json"
+          "disable_host_sanitize": false,
+          "method": "GET"
         }
-      }
-
+      
+     }
+      
     }
-  ]
 }
