@@ -61,7 +61,7 @@ method "GET"
 ```
 http://localhost:8080/product
 ```
-#vLogging
+## Logs
 ## Logs for each service can be viewed using the following commands:
  Krakend
  ```
@@ -83,6 +83,7 @@ Jaeger
 docker-compose logs jaeger
 
 ```
+## or if you use docker desktop you can find logs by docker desktop -> containers -> container name -> logs 
 # Ports
 Krakend EE: '1234','8080'
 Grafana: '4000'
