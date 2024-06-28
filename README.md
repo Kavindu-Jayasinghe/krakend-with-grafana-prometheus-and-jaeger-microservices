@@ -51,7 +51,7 @@ Krakend API
 Endpoint: /product
 Method: 'GET'
 Description: Retrieves product information from the backend service.
-Or you can add endpoints as your need in krakend.json, /product is basic sample endpoint. use krakend designer for define endpoints you can find information in documentation```https://www.krakend.io/docs/ ```
+Or you can add endpoints as your need in krakend.json, /product is basic sample endpoint. use krakend designer for define endpoints you can find information in [documentation] (https://www.krakend.io/docs/)
 ## Example Request
 ```
 curl -X GET http://localhost:8080/product
