@@ -20,7 +20,7 @@ This repository contains a Docker Compose setup for running a microservices arch
 
 ```sh
 git clone https://github.com/Kavindu-Jayasinghe/krakend-micro.git
-cd krakend-micro
+cd krakend-with-grafana-prometheus-and-jaeger-microservices
 ```
 # Start the Services
 ## To start all the services, run:
@@ -86,7 +86,8 @@ docker-compose logs jaeger
 ```
 ## or 
 ## if you use docker desktop you can find logs, 
-docker desktop -> containers -> krakend-micro -> container name -> logs 
+docker desktop -> containers -> krakend-with-grafana-prometheus-and-jaeger-microservices
+ -> container name -> logs 
 # Ports
 Krakend EE: '1234','8080'
 
