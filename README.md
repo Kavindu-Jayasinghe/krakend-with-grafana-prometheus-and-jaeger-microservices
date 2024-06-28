@@ -99,6 +99,6 @@ Jaeger: '16686','14268','64317','64318'
 # Notes
 ## The krakend/krakend-ee:2.6-watch image is used for development purposes. Do not use this image in production.
 ## Default Grafana admin credentials are 'admin'/'123'.
-
+## API Endpoints that genarated using Ai like chatGPT can be return 404 in this case you have to define endpoints your self.
 
 
