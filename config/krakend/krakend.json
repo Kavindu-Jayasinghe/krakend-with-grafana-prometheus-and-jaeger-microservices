@@ -1,7 +1,7 @@
 {
   "$schema": "https://www.krakend.io/schema/v3.json",
   "version": 3,
-  "name": "Loan Insurance Request Service",
+  "name": "krakend test",
   "port": 8080,
   "cache_ttl": "300s",
   "timeout": "300s",
