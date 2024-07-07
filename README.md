@@ -35,7 +35,7 @@ docker-compose down
 ```
 # Configuration
 ## Krakend 
-The Krakend configuration is defined in ./config/krakend/krakend.json. You can modify this file to change the API gateway behavior.
+The Krakend configuration is defined in ./config/krakend/krakend.json. You can modify this file to change the API gateway behavior(dosn't have a UI).
 ```localhost:8080```
 ## Grafana 
 Grafana is configured to use Prometheus as a data source and includes dashboards for monitoring. Configuration files are located in ./config/telemetry-dashboards/grafana/.
@@ -60,6 +60,7 @@ curl -X GET http://localhost:8080/product
 ## or postman
 method "GET"
 ```
+http://localhost:8080/__health
 http://localhost:8080/product
 ```
 ## Logs
