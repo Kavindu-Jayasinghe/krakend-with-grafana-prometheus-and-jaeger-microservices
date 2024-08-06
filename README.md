@@ -44,6 +44,15 @@ Grafana is configured to use Prometheus as a data source and includes dashboards
 Prometheus is configured to scrape metrics from various services. The configuration file is located at ./config/telemetry-dashboards/prometheus/prometheus.yml.
 ```localhost:9090```
 ## Jaeger 
+duto jaeger update ther is a problem with pushing span data to jaeger if you face some error like this 
+```
+▶ ERROR [SERVICE: OpenTelemetry] traces export: context deadline exceeded: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp localhost:4317: connect: connection refused"
+```
+becous, when running in container environment the endpoints are likely unreachable from other containers the fix will be available in the next release. Meanwhile, the workaround is to instruct Jaeger to listen on 0.0.0.0, as in this fix:
+```
+ - COLLECTOR_OTLP_GRPC_HOST_PORT=0.0.0.0:4317
+ - COLLECTOR_OTLP_HTTP_HOST_PORT=0.0.0.0:4318
+```
 Jaeger is set up to collect and visualize traces. No additional configuration is required.
 ```localhost:16686```
 ## API Endpoints
