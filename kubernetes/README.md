@@ -19,11 +19,10 @@ This chart sets up the following components:
 ## Installation
 
 1. **Clone the repository:**
-
-   ```
-   git clone https://github.com/Kavindu-Jayasinghe/krakend-with-grafana-prometheus-and-jaeger-microservices.git
-   cd /krakend-with-grafana-prometheus-and-jaeger-microservices/kubernetes/helm
-   ```
+```
+git clone https://github.com/Kavindu-Jayasinghe/krakend-with-grafana-prometheus-and-jaeger-microservices.git
+cd /krakend-with-grafana-prometheus-and-jaeger-microservices/kubernetes/helm
+```
 2. ** Package the Helm chart:**
 ```
 helm package .
