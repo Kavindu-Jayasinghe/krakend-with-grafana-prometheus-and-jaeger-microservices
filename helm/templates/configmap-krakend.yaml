@@ -1,0 +1,111 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: krakend-config
+data:
+  krakend.json: |
+    {
+      "$schema": "https://www.krakend.io/schema/v3.json",
+      "version": 3,
+      "name": "krakend test",
+      "port": 8080,
+      "cache_ttl": "300s",
+      "timeout": "300s",
+      "output_encoding": "json",
+      "extra_config": {
+        "github_com/devopsfaith/krakend-cors": {
+          "allow_origins": ["*"],
+          "allow_methods": ["GET", "POST", "PUT", "DELETE"],
+          "allow_headers": ["Authorization", "Content-Type"]
+        },
+        "telemetry/opentelemetry": {
+          "service_name": "krakend_service",
+          "metric_reporting_period": 1,
+          "trace_sample_rate": 1,
+          "exporters": {
+            "otlp": [
+              {
+                "disable_metrics": true,
+                "disable_traces": false,
+                "host": "jaeger",
+                "name": "debug_jaeger",
+                "port": 4317,
+                "use_http": false
+              }
+            ],
+            "prometheus": [
+              {
+                "name": "local_prometheus",
+                "port": 9090,
+                "process_metrics": true,
+                "go_metrics": true
+              }
+            ]
+          },
+          "layers": {
+            "global": {
+              "disable_metrics": false,
+              "disable_propagation": false,
+              "disable_traces": false,
+              "report_headers": true
+            },
+            "proxy": {
+              "disable_metrics": false,
+              "disable_traces": true,
+              "report_headers": true
+            },
+            "backend": {
+              "metrics": {
+                "detailed_connection": true,
+                "disable_stage": false,
+                "read_payload": false,
+                "round_trip": false
+              },
+              "traces": {
+                "detailed_connection": false,
+                "disable_stage": false,
+                "read_payload": false,
+                "report_headers": false,
+                "round_trip": false
+              }
+            }
+          }
+        },
+        "telemetry/logging": {
+          "level": "DEBUG",
+          "prefix": "[KRAKEND]",
+          "syslog": false,
+          "stdout": true
+        }
+      },
+      "endpoints": [
+        {
+          "endpoint": "/product",
+          "method": "GET",
+          "extra_config": {},
+          "backend": [
+            {
+              "url_pattern": "/product",
+              "extra_config": {
+                "qos/circuit-breaker": {
+                  "interval": 60,
+                  "name": "circuit-breaker-1",
+                  "timeout": 10,
+                  "max_errors": 1,
+                  "log_status_change": true
+                },
+                "qos/ratelimit/proxy": {
+                  "max_rate": 10,
+                  "capacity": 10,
+                  "every": "5s"
+                }
+              },
+              "sd": "static",
+              "host": ["https://dummyjson.com"],
+              "disable_host_sanitize": false,
+              "method": "GET"
+            }
+          ]
+        }
+      ]
+    }

@@ -1,0 +1,5 @@
+apiVersion: v2
+name: microservice_project
+description: microservices deployment Krakend, Grafana, Prometheus, and Jaeger
+version: 0.1.0
+appVersion: "1.0.0"

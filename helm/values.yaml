@@ -1,0 +1,55 @@
+replicaCount: 1
+
+krakend:
+  image:
+    name: devopsfaith/krakend
+    pullPolicy: IfNotPresent
+
+prometheus:
+  image:
+    name: prom/prometheus
+    pullPolicy: IfNotPresent
+    tag: latest
+
+grafana:
+  image:
+    name: grafana/grafana
+    pullPolicy: IfNotPresent
+    tag: 9.1.2
+
+jaeger:
+  image:
+    name: jaegertracing/all-in-one
+    pullPolicy: IfNotPresent
+    tag: 1
+
+krakend_service:
+  type: LoadBalancer
+  httpPort: 8080
+  logPort: 8090
+
+grafana_service:
+  type: LoadBalancer
+  targetPort: 3000
+  containerPort: 4000
+
+prometheus_service:
+  type: LoadBalancer
+  targetPort: 9090
+  containerPort: 9090
+
+jaeger_service:
+  type: LoadBalancer
+  ports:
+    - name: query
+      port: 16686
+      targetPort: 16686
+    - name: collector
+      port: 14268
+      targetPort: 14268
+    - name: grpc-otlp
+      port: 4317
+      targetPort: 4317
+    - name: grpc-otlp-alt
+      port: 4318
+      targetPort: 4318

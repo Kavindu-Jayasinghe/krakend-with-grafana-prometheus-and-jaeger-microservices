@@ -1,0 +1,33 @@
+{{- range $component, $config := .Values }}
+  {{- if $config.image }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $component }}
+  labels:
+    app: {{ $component }}
+spec:
+  type: {{ $component }}_service.type
+  ports:
+    {{- if eq $component "krakend" }}
+    - port: {{ $.Values.krakend_service.httpPort }}
+      targetPort: {{ $.Values.krakend_service.httpPort }}
+    - port: {{ $.Values.krakend_service.logPort }}
+      targetPort: {{ $.Values.krakend_service.logPort }}
+    {{- else if eq $component "prometheus" }}
+    - port: {{ $.Values.prometheus_service.targetPort }}
+      targetPort: {{ $.Values.prometheus_service.containerPort }}
+    {{- else if eq $component "grafana" }}
+    - port: {{ $.Values.grafana_service.targetPort }}
+      targetPort: {{ $.Values.grafana_service.containerPort }}
+    {{- else if eq $component "jaeger" }}
+    {{- range $port := $.Values.jaeger_service.ports }}
+    - name: {{ $port.name }}
+      port: {{ $port.port }}
+      targetPort: {{ $port.targetPort }}
+    {{- end }}
+    {{- end }}
+  selector:
+    app: {{ $component }}
+  {{- end }}
+{{- end }}

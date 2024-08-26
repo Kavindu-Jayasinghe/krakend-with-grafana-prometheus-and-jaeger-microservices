@@ -1,0 +1,75 @@
+{{- range $component, $config := .Values }}
+  {{- if $config.image }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $component }}
+  labels:
+    app: {{ $component }}
+spec:
+  replicas: {{ $.Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ $component }}
+  template:
+    metadata:
+      labels:
+        app: {{ $component }}
+    spec:
+      containers:
+        - name: {{ $component }}
+          image: {{ $config.image.name }}:{{ $config.image.tag | default "latest" }}
+          imagePullPolicy: {{ $config.image.pullPolicy }}
+          ports:
+            {{- if eq $component "krakend" }}
+            - containerPort: {{ $.Values.krakend_service.httpPort }}
+            - containerPort: {{ $.Values.krakend_service.logPort }}
+            volumeMounts:
+              - name: krakend-config-volume
+                mountPath: /etc/krakend
+            {{- else if eq $component "prometheus" }}
+            - containerPort: {{ $.Values.prometheus_service.containerPort }}
+            volumeMounts:
+              - name: config-volume
+                mountPath: /etc/prometheus
+            {{- else if eq $component "grafana" }}
+            - containerPort: {{ $.Values.grafana_service.containerPort }}
+            volumeMounts:
+              - name: grafana-dashboards
+                mountPath: /var/lib/grafana/dashboards/krakend/
+              - name: grafana-datasources
+                mountPath: /etc/grafana/provisioning/datasources/datasources.yaml
+                subPath: datasources.yaml
+              - name: grafana-provisioning
+                mountPath: /etc/grafana/provisioning/dashboards/all.yml
+                subPath: all.yml
+            {{- else if eq $component "jaeger" }}
+            {{- range $port := $.Values.jaeger_service.ports }}
+            - containerPort: {{ $port.targetPort }}
+            {{- end }}
+          {{- end }}
+      volumes:
+        {{- if eq $component "krakend" }}
+        - name: krakend-config-volume
+          configMap:
+            name: krakend-config
+        {{- else if eq $component "prometheus" }}
+        - name: config-volume
+          configMap:
+            name: prometheus-config
+            items:
+              - key: prometheus.yml
+                path: prometheus.yml
+        {{- else if eq $component "grafana" }}
+        - name: grafana-dashboards
+          configMap:
+            name: grafana-dashboards
+        - name: grafana-datasources
+          configMap:
+            name: grafana-datasources
+        - name: grafana-provisioning
+          configMap:
+            name: grafana-provisioning
+        {{- end }}
+  {{- end }}
+{{- end }}
