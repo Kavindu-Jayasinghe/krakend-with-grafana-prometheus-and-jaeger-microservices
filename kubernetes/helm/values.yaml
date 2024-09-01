@@ -39,7 +39,7 @@ prometheus_service:
   containerPort: 9090
 
 jaeger_service:
-  type: LoadBalancer
+  type: ClusteIP
   ports:
     - name: query
       port: 16686
